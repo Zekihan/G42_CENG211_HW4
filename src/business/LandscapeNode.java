@@ -6,8 +6,8 @@ public class LandscapeNode extends Node{
 
 	private LandscapeType type;
 
-	public LandscapeNode(int nodeId, List<Node> neighborList, LandscapeType type) {
-		super(nodeId, neighborList);
+	public LandscapeNode(int nodeId, String name, LandscapeType type) {
+		super(nodeId, name);
 		setType(type);
 	}
 

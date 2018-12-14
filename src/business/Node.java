@@ -5,31 +5,24 @@ import java.util.List;
 public abstract class Node {
 
 	private int id;
-	private List<Node> neighbors;
+	private String name;
 	
 	
-	public Node(int nodeId, List<Node> neighborList) {
+	public Node(int nodeId, String name) {
 		
 		setId(nodeId);
-		setNeighbors(neighborList);
+		setName(name);
 	}
 
 	
-	
-	
-	
-	
-	
-	
+	private void setName(String name) {
+		this.name = name;
+	}
 
 	private void setId(int id) {
 		this.id = id;
 	}
 
-	
-	private void setNeighbors(List<Node> neighbors) {
-		this.neighbors = neighbors;
-	}
-	
+
 	
 }
