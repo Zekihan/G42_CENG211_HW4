@@ -14,7 +14,7 @@ public abstract class Node {
 		setName(name);
 	}
 	
-	public abstract double getDistance(Node other);
+	public abstract double getNeighborDistance(Node other);
 
 	
 	private void setName(String name) {

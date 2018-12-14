@@ -1,7 +1,5 @@
 package business;
 
-import java.util.List;
-
 public class BuildingNode extends Node {
 
 	private final int DEFAULT_VALUE = 6;
@@ -15,9 +13,13 @@ public class BuildingNode extends Node {
 	public BuildingType getType() {
 		return type;
 	}
-
+	
+	private void setType(BuildingType type) {
+		this.type = type;
+	}
+	
 	@Override
-	public double getDistance(Node other) {
+	public double getNeighborDistance(Node other) {
 		switch (getType()) {
 		case ADMINISTRATIVE:
 			return getAdministrativeDistance(other);
@@ -110,11 +112,6 @@ public class BuildingNode extends Node {
 				return DEFAULT_VALUE;
 			}
 		}
-	}
-
-
-	private void setType(BuildingType type) {
-		this.type = type;
 	}
 
 	

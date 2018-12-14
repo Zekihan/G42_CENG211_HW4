@@ -1,7 +1,5 @@
 package business;
 
-import java.util.List;
-
 public class LandscapeNode extends Node{
 	
 	private final int DEFAULT_VALUE = 6;
@@ -16,8 +14,12 @@ public class LandscapeNode extends Node{
 		return type;
 	}
 	
+	private void setType(LandscapeType type) {
+		this.type = type;
+	}
+	
 	@Override
-	public double getDistance(Node other) {
+	public double getNeighborDistance(Node other) {
 		switch (getType()) {
 		case WATERFALL:
 			return getWaterfallDistance(other);
@@ -75,9 +77,7 @@ public class LandscapeNode extends Node{
 	}
 	
 
-	private void setType(LandscapeType type) {
-		this.type = type;
-	}
+	
 	
 	
 }
