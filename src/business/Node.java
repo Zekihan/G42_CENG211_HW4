@@ -1,11 +1,10 @@
 package business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node {
 
-	private int Id;
+	private int id;
 	private List<Node> neighbors;
 	
 	
@@ -24,7 +23,7 @@ public abstract class Node {
 	
 
 	private void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	
