@@ -1,0 +1,11 @@
+package business;
+
+public enum CategoryTypes {
+	DEPARTMENT,
+	CAFETERIA,
+	ADMINISTRATIVE,
+	FACILITIES,
+	WATERFALL,
+	BEACH,
+	HISTORICAL_RUIN
+}
