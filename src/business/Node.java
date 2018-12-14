@@ -13,6 +13,8 @@ public abstract class Node {
 		setId(nodeId);
 		setName(name);
 	}
+	
+	public abstract double getDistance(Node other);
 
 	
 	private void setName(String name) {
