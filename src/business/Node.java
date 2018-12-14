@@ -1,7 +1,5 @@
 package business;
 
-import java.util.List;
-
 public abstract class Node {
 
 	private int id;

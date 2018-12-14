@@ -41,7 +41,7 @@ public class Izmap {
 						}
 					}
 				}
-				return 0;
+				return distance;
 			}
 			else {
 				return 0;
