@@ -20,7 +20,9 @@ public class App {
 		Node node2 = aa.get(1);
 		System.out.println(node1);
 		System.out.println(node2);
+		
 		System.out.println(map.getShortestDistance(node1, node2));
+		
 	}
 
 }

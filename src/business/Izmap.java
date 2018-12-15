@@ -1,5 +1,6 @@
 package business;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,23 +37,80 @@ public class Izmap {
 			return node1.getNeighborDistance(node2);
 		}else {
 			if(isReachable(node1, node2)) {
-				double shortest = 100;
-				double distance = 0;
-				List<Node> neighbors = getNeighbors(node1);
-				for (Node node : neighbors) {
-					if (!(node.equals(node1))) {
-						if(isReachable(node, node2)) {
-							distance += node1.getNeighborDistance(node);
-							getDistance(node, node2);
-						}
+				List<List<Node>> allpaths = getAllPaths(node1, node2);
+				double shortest = getDistance(allpaths.get(0));
+				for (int i = 0; i < allpaths.size(); i++) {
+					double distance = getDistance(allpaths.get(i));
+					if(distance < shortest) {
+						shortest = distance;
 					}
 				}
-				return distance;
+				return shortest;
 			}
 			else {
 				return -1;
 			}
 		}
+	}
+	private double getDistance(List<Node> path) {
+		double distance = 0;
+		for (int i = 0; i < path.size()-1; i++) {
+			distance += path.get(i).getNeighborDistance(path.get(i+1));
+		}
+		return distance;
+	}
+	public List<List<Node>> getAllPaths(Node node1,Node node2) {
+		List<List<Integer>> paths = new ArrayList<>();
+		int v = map.size();
+        boolean[] isVisited = new boolean[v*2];
+        
+        ArrayList<Integer> pathList = new ArrayList<>(); 
+
+        pathList.add(node1.getId()); 
+
+        paths = getAllPathsRecursive(node1, node2, isVisited, pathList, paths);
+        List<List<Node>> pathsByNodes = new ArrayList<>(paths.size());
+        for (int i = 0; i < paths.size(); i++) {
+        	List<Node> pathByNode = new ArrayList<>();
+			List<Integer> path = paths.get(i);
+			for (int j = 0; j < path.size(); j++) {
+				pathByNode.add(getNodeById(path.get(j)));
+			}
+			pathsByNodes.add(pathByNode);
+		}
+        return pathsByNodes;
+	}
+	private Node getNodeById(int id) {
+		Set<Node> keys = map.keySet();
+		for (Node node : keys) {
+			if(node.getId() == id) {
+				return node;
+			}
+		}
+		return null;
+	}
+	private List<List<Integer>> getAllPathsRecursive(Node node1,Node node2, boolean[] isVisited, List<Integer> localPathList,List<List<Integer>> paths) { 
+		isVisited[node1.getId()] = true; 
+		if (node1.equals(node2)) {
+			ArrayList<Integer> copy = new ArrayList<Integer>();
+			for (Integer integer : localPathList) {
+				copy.add(integer);
+			}
+			paths.add(copy);
+			isVisited[node1.getId()]= false; 
+			return paths; 
+		} 
+		
+		for (Node node : map.get(node1)) { 
+			Integer i = node.getId();
+			if (!isVisited[i]) { 
+				localPathList.add(i); 
+				getAllPathsRecursive(node, node2, isVisited, localPathList, paths);
+				localPathList.remove(i); 
+			} 
+		} 
+		isVisited[node1.getId()] = false;
+		return paths; 
 	}
 	
 	public boolean isNeighbor(Node node1,Node node2) {
