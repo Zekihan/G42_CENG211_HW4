@@ -21,12 +21,6 @@ public class IzmapManager {
 		
 	}
 	public double getShortestPath(Node node,double distance) {
-		List<Node> reachable = map.getReachable(node);
-		for (Node node1 : reachable) {
-			if(map.getDistance(node, node1) <= distance) {
-				System.out.println(node1);
-			}
-		}
 		return 0;
 	}
 	public void getNeighbors(Node node) {

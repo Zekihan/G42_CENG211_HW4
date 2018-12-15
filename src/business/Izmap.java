@@ -29,13 +29,14 @@ public class Izmap {
 		return map.get(node);
 	}
 	
-	public double getDistance(Node node1,Node node2) {
+	public double getShortestDistance(Node node1,Node node2) {
 		if(node1.equals(node2)) {
 			return 0;
 		}else if (isNeighbor(node1, node2)) {
 			return node1.getNeighborDistance(node2);
 		}else {
 			if(isReachable(node1, node2)) {
+				double shortest = 100;
 				double distance = 0;
 				List<Node> neighbors = getNeighbors(node1);
 				for (Node node : neighbors) {
@@ -59,20 +60,7 @@ public class Izmap {
 	}
 	
 	public boolean isReachable(Node node1,Node node2) {
-		boolean reach = false;
-		if(isNeighbor(node1, node2)) {
-			reach = true;
-		}else {
-			List<Node> neighbors = getNeighbors(node1);
-			for (Node node : neighbors) {
-				if (!(node.equals(node1))) {
-					if(isReachable(node, node2)) {
-						reach = true;
-					}
-				}
-			}
-		}
-		return reach;
+		return getReachable(node1).contains(node2);
 	}
 	public List<Node> getReachable(Node node1) {
 		Set<Node> mapKey = map.keySet();

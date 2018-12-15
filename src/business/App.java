@@ -20,13 +20,7 @@ public class App {
 		Node node2 = aa.get(1);
 		System.out.println(node1);
 		System.out.println(node2);
-		List<Node> bb = map.getNeighbors(node1);
-		System.out.println(bb);
-		List<Node> cc = map.getReachable(node1);
-		System.out.println(cc);
-		for (Node node : cc) {
-			System.out.println(node.getId());
-		}
+		System.out.println(map.getShortestDistance(node1, node2));
 	}
 
 }
