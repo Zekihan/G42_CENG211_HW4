@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.BuildingNode;
+import business.CategoryType;
 import business.Node;
 
 public class IzmapWriter {
@@ -18,7 +19,7 @@ public class IzmapWriter {
 	}
 	
 	public void write(HashMap<Node, List<Node>> izmap) {
-		PrintWriter fileOut;
+		PrintWriter fileOut = null;
 		try {
 			fileOut = new PrintWriter(new File("fileName"));
 		} catch (FileNotFoundException e) {
@@ -26,12 +27,44 @@ public class IzmapWriter {
 			e.printStackTrace();
 		}
 		for (Node node: izmap.keySet()) {
-			if(node.getClass().equals(BuildingNode.class)) {
-				
-				String line = node.getId() + " [Building, " + node.getType().toString();
-			}
 			
+			CategoryType categoryType = node.getType();
+			String type;
+			switch(categoryType) {
+			case DEPARTMENT :
+				type = "Department" ;
+				break;
+			case CAFETERIA:
+				type = "Cafeteria";
+				break;
+			case ADMINISTRATIVE:
+				type = "Administrative";
+				break;
+			case FACILITIES:
+				type = "Facility";
+				break;
+			case WATERFALL:
+				type = "Waterfall";
+				break;
+			case BEACH:
+				type = "Beach";
+				break;
+			case HISTORICAL_RUIN:
+				type = "Historical Ruin";
+				break;
+			default:
+				type = null;
+				break;
+			}
+			if(node.getClass().equals(BuildingNode.class)) {
+				String line = node.getId() + " [Building, " + type + ", " + node.getName() + "]";
+				fileOut.println(line);
+			}else {
+				String line = node.getId() + " [Landscape, " + type + ", " + node.getName() + "]";
+				fileOut.println(line);
+			}
 		}
+		
 		
 	}
 	
