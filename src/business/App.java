@@ -18,7 +18,8 @@ public class App {
 		
 		IzmapReader mapReader = new IzmapReader("iztech.izmap");
 		HashMap<Node, List<Node>> izmap = mapReader.read();
-		System.out.println(izmap);
+		
+		System.out.println(izmap.keySet());
 		
 	}
 
