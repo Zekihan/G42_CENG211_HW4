@@ -1,6 +1,8 @@
 package business;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,7 +45,8 @@ public class IzmapManager {
 					addNode();
 					break;
 				case 2:
-					removeNode();
+					System.out.println( "Please write Id of a location" + System.lineSeparator());
+					removeNode(map.getNodeById(keyboard.nextInt()));
 					break;
 				default:
 					break;
@@ -71,12 +74,20 @@ public class IzmapManager {
 		
 	}
 	
-	private void removeNode() {
-		
+	private void removeNode(Node node) {
+		HashMap<Node, List<Node>> izmap = map.getMap();
+		List<Node> neighbors = izmap.get(node);
+		for (Node node1 : neighbors) {
+			int index = izmap.get(node1).indexOf(node);
+			izmap.get(node1).remove(index);
+		}
+		izmap.remove(node);
 	}
+	
 	private void getShortestPath(Node node1,Node node2) {
 		System.out.println(map.getShortestDistance(node1, node2));
 	}
+	
 	private void getPossibleReachableLocationsFromGivenLocationDistance(Node node,double distance) {
 		List<Node> reachable = map.getReachable(node);
 		for (Node node1 : reachable) {
@@ -88,6 +99,7 @@ public class IzmapManager {
 			}
 		}
 	}
+	
 	private void getNeighbors(Node node) {
 		List<Node> neighbors = map.getNeighbors(node);
 		neighbors.sort(new Comparator<Node>() {
