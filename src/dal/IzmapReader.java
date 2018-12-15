@@ -40,6 +40,9 @@ public class IzmapReader {
 			}
 			String category = fileIn.next();
 			String categoryType = fileIn.next();
+			if(categoryType.equals("Historical")){
+				categoryType = categoryType + " " + fileIn.next();
+			}
 			String name = fileIn.next();
 			while(!fileIn.hasNextInt()) {
 				name = name + " " + fileIn.next();
@@ -57,7 +60,7 @@ public class IzmapReader {
 				case "Administrative":
 					type = BuildingType.ADMINISTRATIVE;
 					break;
-				case "Facilities":
+				case "Facility":
 					type = BuildingType.FACILITIES;
 					break;
 				default:
