@@ -10,7 +10,7 @@ public class IzmapManager {
 	Izmap map;
 
 	public IzmapManager() {
-		this.map = new Izmap(new IzmapReader("iztech").read());
+		this.map = new Izmap(new IzmapReader("iztech.izmap").read());
 	}
 	
 	public void addNode() {

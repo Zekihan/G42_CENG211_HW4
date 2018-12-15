@@ -1,5 +1,5 @@
 1 [Building, Department, Computer Engineering]
-2 [Landscape, Historical Ruin, Roman Bath]
+2 [Landscape, Beach, Roman Bath]
 3 [Building, Facility, Gym]
 4 [Building, Facility, Pool]
 5 [Building, Department, Mechanical Engineering]
@@ -29,4 +29,6 @@
 7 <--> 11
 3 <--> 14
 11 <--> 7
+4 <--> 3
+10 <--> 3
 

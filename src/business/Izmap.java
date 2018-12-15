@@ -23,11 +23,16 @@ public class Izmap {
 	}
 	
 	public List<Node> getNeighbors(Node node) {
-		return getMap().get(node);
+		if(map.get(node) == null) {
+			return new ArrayList<Node>();
+		}
+		return map.get(node);
 	}
 	
 	public double getDistance(Node node1,Node node2) {
-		if (isNeighbor(node1, node2)) {
+		if(node1.equals(node2)) {
+			return 0;
+		}else if (isNeighbor(node1, node2)) {
 			return node1.getNeighborDistance(node2);
 		}else {
 			if(isReachable(node1, node2)) {
@@ -44,7 +49,7 @@ public class Izmap {
 				return distance;
 			}
 			else {
-				return 0;
+				return -1;
 			}
 		}
 	}
@@ -71,12 +76,18 @@ public class Izmap {
 	}
 	
 	public List<Node> getReachable(Node node1) {
+		Set<Node> unlooked = map.keySet();
+		unlooked.remove(node1);
 		Set<Node> reached = new HashSet<>();
 		List<Node> neighbors = getNeighbors(node1);
-		reached.addAll(neighbors);
+		System.out.println(neighbors.size());
+		for (Node node : neighbors) {
+			reached.add(node);
+		}
 		for (Node node : neighbors) {
 			if (!(node.equals(node1))) {
-				reached.addAll(getReachable(node));
+				if(!unlooked.isEmpty())
+					reached.addAll(getReachable(node));
 			}
 		}
 		return new ArrayList<Node>(reached);
