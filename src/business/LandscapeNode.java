@@ -75,6 +75,13 @@ public class LandscapeNode extends Node{
 			return DEFAULT_VALUE;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "LandscapeNode [type=" + type + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
 	
 
 	

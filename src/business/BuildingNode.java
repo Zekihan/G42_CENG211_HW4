@@ -114,6 +114,13 @@ public class BuildingNode extends Node {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "BuildingNode [ type=" + type + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
+
 	
 
 }
