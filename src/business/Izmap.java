@@ -80,7 +80,7 @@ public class Izmap {
 		}
         return pathsByNodes;
 	}
-	private Node getNodeById(int id) {
+	public Node getNodeById(int id) {
 		Set<Node> keys = map.keySet();
 		for (Node node : keys) {
 			if(node.getId() == id) {
