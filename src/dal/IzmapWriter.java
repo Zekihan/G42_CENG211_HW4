@@ -3,8 +3,11 @@ package dal;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import business.BuildingNode;
 import business.CategoryType;
@@ -21,7 +24,7 @@ public class IzmapWriter {
 	public void write(HashMap<Node, List<Node>> izmap) {
 		PrintWriter fileOut = null;
 		try {
-			fileOut = new PrintWriter(new File("fileName"));
+			fileOut = new PrintWriter(new File(fileName));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,8 +67,25 @@ public class IzmapWriter {
 				fileOut.println(line);
 			}
 		}
+		fileOut.println();
 		
+		Set<Set<Integer>> bidirectionalRelations = new HashSet<>();
+		for(Node node: izmap.keySet()) {
+			int nodeId = node.getId();
+			for(Node neighborNode: izmap.get(node)) {
+				Set<Integer> pair = new HashSet<>();
+				pair.add(nodeId);
+				pair.add(neighborNode.getId());
+				bidirectionalRelations.add(pair);
+			}		
+		}
 		
+		for(Set<Integer> pair: bidirectionalRelations) {
+			Integer[] pairArr = pair.toArray(new Integer[2]); 
+			fileOut.println(pairArr[0] + " <--> " + pairArr[1]);
+		}
+		
+		fileOut.close();
 	}
 	
 	
