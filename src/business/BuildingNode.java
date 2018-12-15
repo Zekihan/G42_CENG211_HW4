@@ -3,18 +3,18 @@ package business;
 public class BuildingNode extends Node {
 
 	private final int DEFAULT_VALUE = 6;
-	private BuildingType type;
+	private CategoryType type;
 
-	public BuildingNode(int nodeId, String name, BuildingType type) {
+	public BuildingNode(int nodeId, String name, CategoryType type) {
 		super(nodeId, name);
 		setType(type);
 	}
 	
-	public BuildingType getType() {
+	public CategoryType getType() {
 		return type;
 	}
 	
-	private void setType(BuildingType type) {
+	private void setType(CategoryType type) {
 		this.type = type;
 	}
 	

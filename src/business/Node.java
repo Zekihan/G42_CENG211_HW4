@@ -17,6 +17,10 @@ public abstract class Node {
 	public String getName() {
 		return name;
 	}
+	public CategoryType getType() {
+		return null;
+	}
+
 	
 	private void setName(String name) {
 		this.name = name;

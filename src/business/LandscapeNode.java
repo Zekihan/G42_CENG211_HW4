@@ -3,18 +3,18 @@ package business;
 public class LandscapeNode extends Node{
 	
 	private final int DEFAULT_VALUE = 6;
-	private LandscapeType type;
+	private CategoryType type;
 
-	public LandscapeNode(int nodeId, String name, LandscapeType type) {
+	public LandscapeNode(int nodeId, String name, CategoryType type) {
 		super(nodeId, name);
 		setType(type);
 	}
 
-	public LandscapeType getType() {
+	public CategoryType getType() {
 		return type;
 	}
 	
-	private void setType(LandscapeType type) {
+	private void setType(CategoryType type) {
 		this.type = type;
 	}
 	

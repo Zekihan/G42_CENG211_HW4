@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import business.BuildingNode;
-import business.BuildingType;
+import business.CategoryType;
 import business.LandscapeNode;
-import business.LandscapeType;
+import business.CategoryType;
 import business.Node;
 
 public class IzmapReader {
@@ -48,43 +48,35 @@ public class IzmapReader {
 				name = name + " " + fileIn.next();
 			}
 			Node newNode = null;
-			if(category.equals("Building")) {
-				BuildingType type = null;
-				switch(categoryType) {
-				case "Department":
-					type = BuildingType.DEPARTMENT;
-					break;
-				case "Cafeteria":
-					type = BuildingType.CAFETERIA;
-					break;
-				case "Administrative":
-					type = BuildingType.ADMINISTRATIVE;
-					break;
-				case "Facility":
-					type = BuildingType.FACILITIES;
-					break;
-				default:
-					break;
-				}
-				newNode = new BuildingNode(nodeId, name, type);
-			}else if(category.equals("Landscape")) {
-				LandscapeType type = null;
-				switch(categoryType) {
-				case "Waterfall":
-					type = LandscapeType.WATERFALL;
-					break;
-				case "Beach":
-					type = LandscapeType.BEACH;
-					break;
-				case "Historical Ruin":
-					type = LandscapeType.HISTORICAL_RUIN;
-					break;
-				default:
-					break;
-				}
-				newNode = new LandscapeNode(nodeId, name, type);
-			}else {
+			
+			CategoryType type = null;
+			switch(categoryType) {
+			case "Department":
+				type = CategoryType.DEPARTMENT;
+				break;
+			case "Cafeteria":
+				type = CategoryType.CAFETERIA;
+				break;
+			case "Administrative":
+				type = CategoryType.ADMINISTRATIVE;
+				break;
+			case "Facility":
+				type = CategoryType.FACILITIES;
+				break;
+			case "Waterfall":
+				type = CategoryType.WATERFALL;
+				break;
+			case "Beach":
+				type = CategoryType.BEACH;
+				break;
+			case "Historical Ruin":
+				type = CategoryType.HISTORICAL_RUIN;
+				break;
+			default:
+				break;
 			}
+				newNode = new LandscapeNode(nodeId, name, type);
+			
 			nodes.put(nodeId, newNode);
 		}
 		HashMap<Node, List<Node>> izmap = new HashMap<>();
