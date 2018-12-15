@@ -74,20 +74,39 @@ public class Izmap {
 		}
 		return reach;
 	}
-	
 	public List<Node> getReachable(Node node1) {
-		Set<Node> unlooked = map.keySet();
-		unlooked.remove(node1);
+		Set<Node> mapKey = map.keySet();
+		List<Node> unlooked = new ArrayList<>();
+		for (Node node : mapKey) {
+			unlooked.add(node);
+		}
 		Set<Node> reached = new HashSet<>();
 		List<Node> neighbors = getNeighbors(node1);
-		System.out.println(neighbors.size());
+		unlooked.remove(node1);
 		for (Node node : neighbors) {
 			reached.add(node);
 		}
 		for (Node node : neighbors) {
 			if (!(node.equals(node1))) {
 				if(!unlooked.isEmpty())
-					reached.addAll(getReachable(node));
+					reached.addAll(getPriReachable(node,unlooked));
+			}
+		}
+		return new ArrayList<Node>(reached);
+	}
+	
+	public List<Node> getPriReachable(Node node1,List<Node> unlooked) {
+		Set<Node> reached = new HashSet<>();
+		List<Node> neighbors = getNeighbors(node1);
+		if(unlooked.remove(node1)) {
+			for (Node node : neighbors) {
+				reached.add(node);
+			}
+			for (Node node : neighbors) {
+				if (!(node.equals(node1))) {
+					if(!unlooked.isEmpty())
+						reached.addAll(getPriReachable(node,unlooked));
+				}
 			}
 		}
 		return new ArrayList<Node>(reached);

@@ -1,5 +1,6 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,20 +8,25 @@ import dal.IzmapReader;
 
 public class App {
 	public static void main(String[] args) {
-		BuildingNode aa = new BuildingNode(0, "aa", BuildingType.DEPARTMENT);
-		LandscapeNode bb = new LandscapeNode(1, "aa", LandscapeType.BEACH);
-		
-		Node[] cc = new Node[2];
-		cc[0] = aa;
-		cc[1] = bb;
-		Node n = cc[0];
-		System.out.println(n.getClass());
 		
 		IzmapReader mapReader = new IzmapReader("iztech.izmap");
 		HashMap<Node, List<Node>> izmap = mapReader.read();
+		System.out.println(izmap);
 		
-		System.out.println(izmap.keySet());
-		
+		Izmap map = new Izmap(izmap);
+		List<Node> aa = new ArrayList<>();
+		aa.addAll(izmap.keySet());
+		Node node1 = aa.get(0);
+		Node node2 = aa.get(1);
+		System.out.println(node1);
+		System.out.println(node2);
+		List<Node> bb = map.getNeighbors(node1);
+		System.out.println(bb);
+		List<Node> cc = map.getReachable(node1);
+		System.out.println(cc);
+		for (Node node : cc) {
+			System.out.println(node.getId());
+		}
 	}
 
 }
