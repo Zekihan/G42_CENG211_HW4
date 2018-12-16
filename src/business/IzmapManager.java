@@ -136,7 +136,8 @@ public class IzmapManager {
 	}
 	
 	private void getShortestPath(Node node1,Node node2) {
-		System.out.println(map.getShortestDistance(node1, node2));
+		System.out.printf("%.2f",map.getShortestDistance(node1, node2));
+		System.out.println();
 	}
 	
 	private void getPossibleReachableLocationsFromGivenLocationDistance(Node node,double distance) {
@@ -145,7 +146,9 @@ public class IzmapManager {
 			double calcDistance = map.getShortestDistance(node, node1);
 			if(calcDistance > 0) {
 				if(calcDistance<=distance) {
-					System.out.println(node1+", Distance : "+calcDistance);
+					System.out.print(node1+", Distance : ");
+					System.out.printf("%.2f",calcDistance);
+					System.out.println();
 				}
 			}
 		}
