@@ -56,6 +56,7 @@ public class IzmapManager {
 				break;
 			case 5: 
 				view.menuCase5();
+				consoleIn.closeKeyboard();
 				System.exit(0);
 				break;
 			default: 
