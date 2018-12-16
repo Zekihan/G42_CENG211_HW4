@@ -30,6 +30,32 @@ public class Izmap {
 		}
 		map.remove(node);
 	}
+	public int generateUniqueNodeId() {
+		boolean done = false;
+		int id = 1;
+		while(!done) {
+			if(isNodeExist(id)) {
+				id++;
+			}else {
+				done = true;
+			}
+		}
+		return id;
+	}
+	
+	public boolean isNodeExist(int nodeId) {
+		Set<Node> nodeSet = map.keySet();
+		Set<Integer> idSet = new HashSet<>();
+		for (Node node: nodeSet) {
+			idSet.add(node.getId());
+		}
+		for (int id: idSet) {
+			if(id == nodeId) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public List<Node> getNeighbors(Node node) {
 		if(map.get(node) == null) {
@@ -164,5 +190,10 @@ public class Izmap {
 			}
 		}
 		return new ArrayList<Node>(reached);
+	}
+
+	public void addNode(Node newNode) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -40,6 +40,17 @@ public class ConsoleInput {
 		keyboard.reset();
 		return inputList;
 	}
+	
+	public List<Integer> readLineOfInteger() {
+		
+		List<Integer> inputList = new ArrayList<Integer>();
+		keyboard.useDelimiter(",");
+		while(keyboard.hasNext()) {
+			inputList.add(keyboard.nextInt());
+		}
+		keyboard.reset();
+		return inputList;
+	}
 
 	private void setKeyboard(Scanner keyboard) {
 		this.keyboard = keyboard;

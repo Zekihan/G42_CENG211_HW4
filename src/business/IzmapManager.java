@@ -65,13 +65,61 @@ public class IzmapManager {
 	}
 	
 	private void addNode() {
-		System.out.println("Enter node information with comma between in format (\"Name,Category,CategoryType\") : ");
+		System.out.println("Enter node information with comma between in format \"Name,Category,CategoryType\" : ");
 		List<String> inputList = consoleIn.readLineOfString();
 		String nodeName = inputList.get(0);
 		String category = inputList.get(1);
 		String categoryType = inputList.get(2);
+		int nodeId = map.generateUniqueNodeId();
+		Node newNode = null;
+		CategoryType type = null;
+		if(category.equals("Building")) {
+			switch(categoryType) {
+			case "Department":
+				type = CategoryType.DEPARTMENT;
+				break;
+			case "Cafeteria":
+				type = CategoryType.CAFETERIA;
+				break;
+			case "Administrative":
+				type = CategoryType.ADMINISTRATIVE;
+				break;
+			case "Facility":
+				type = CategoryType.FACILITIES;
+				break;
+			default:
+				break;
+			}
+			newNode = new BuildingNode(nodeId, nodeName, type);
+		}else {
+			switch(categoryType) {
+			case "Waterfall":
+				type = CategoryType.WATERFALL;
+				break;
+			case "Beach":
+				type = CategoryType.BEACH;
+				break;
+			case "Historical Ruin":
+				type = CategoryType.HISTORICAL_RUIN;
+				break;
+			default:
+				break;
+			}
+			newNode = new LandscapeNode(nodeId, nodeName, type);
+		}
 		
-		map.addNode(node);
+		System.out.println("Enter neighbour nodes id in format \"1,2,3\"");
+		List<Integer> idList = consoleIn.readLineOfInteger();
+		for(int id : idList) {
+			
+		}
+		
+		
+		
+		map.addNode(newNode);
+		
+		IzmapWriter writer = new IzmapWriter("iztech.izmap");
+		writer.write(map.getHashMap());
 	}
 	
 	private void removeNode(Node node) {
