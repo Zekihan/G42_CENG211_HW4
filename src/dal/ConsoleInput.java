@@ -52,10 +52,14 @@ public class ConsoleInput {
 		}
 		return inputList;
 	}
+	public void closeKeyboard() {
+		keyboard.close();
+	}
 
 	private void setKeyboard(Scanner keyboard) {
 		this.keyboard = keyboard;
 	}
+	
 	
 	
 }
