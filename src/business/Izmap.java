@@ -14,12 +14,21 @@ public class Izmap {
 		setMap(map);
 	}
 
-	public HashMap<Node, List<Node>> getMap() {
+	public HashMap<Node, List<Node>> getHashMap() {
 		return map;
 	}
 
 	private void setMap(HashMap<Node, List<Node>> map) {
 		this.map = map;
+	}
+	
+	public void removeNode(Node node) {
+		List<Node> neighbors = map.get(node);
+		for (Node node1 : neighbors) {
+			int index = map.get(node1).indexOf(node);
+			map.get(node1).remove(index);
+		}
+		map.remove(node);
 	}
 	
 	public List<Node> getNeighbors(Node node) {
@@ -113,7 +122,7 @@ public class Izmap {
 	}
 	
 	public boolean isNeighbor(Node node1,Node node2) {
-		return getMap().get(node1).contains(node2);
+		return getHashMap().get(node1).contains(node2);
 	}
 	
 	public boolean isReachable(Node node1,Node node2) {

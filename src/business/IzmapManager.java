@@ -6,6 +6,7 @@ import java.util.List;
 
 import dal.ConsoleInput;
 import dal.IzmapReader;
+import dal.IzmapWriter;
 import view.IzmapManagerView;
 
 public class IzmapManager {
@@ -64,17 +65,19 @@ public class IzmapManager {
 	}
 	
 	private void addNode() {
+		System.out.println("Enter node information with comma between in format (\"Name,Category,CategoryType\") : ");
+		List<String> inputList = consoleIn.readLineOfString();
+		String nodeName = inputList.get(0);
+		String category = inputList.get(1);
+		String categoryType = inputList.get(2);
 		
+		map.addNode(node);
 	}
 	
 	private void removeNode(Node node) {
-		HashMap<Node, List<Node>> izmap = map.getMap();
-		List<Node> neighbors = izmap.get(node);
-		for (Node node1 : neighbors) {
-			int index = izmap.get(node1).indexOf(node);
-			izmap.get(node1).remove(index);
-		}
-		izmap.remove(node);
+		map.removeNode(node);
+		IzmapWriter writer = new IzmapWriter("iztech.izmap");
+		writer.write(map.getHashMap());
 	}
 	
 	private void getShortestPath(Node node1,Node node2) {
