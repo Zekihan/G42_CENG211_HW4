@@ -62,7 +62,8 @@ public class IzmapManager {
 					consoleIn.closeKeyboard();
 					System.exit(0);
 					break;
-				default: 
+				default:
+					view.menuDefaultCase();
 					break;
 				}
 		        

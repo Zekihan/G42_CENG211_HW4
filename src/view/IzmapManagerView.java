@@ -56,4 +56,9 @@ public class IzmapManagerView {
 		System.out.println("You did something wrong, try again!");
 		
 	}
+
+	public void menuDefaultCase() {
+		System.out.println("That is not a valid menu option");
+		
+	}
 }
