@@ -28,7 +28,7 @@ public class IzmapManagerView {
 	}
 	
 	public void menuCase2Case1() {
-		System.out.println();
+		System.out.println("Enter node information in format \"Name,Category,CategoryType\" : ");
 		
 	}
 	public void menuCase2Case2() {

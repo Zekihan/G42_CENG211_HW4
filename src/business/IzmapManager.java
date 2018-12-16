@@ -1,7 +1,6 @@
 package business;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 import dal.ConsoleInput;
@@ -65,7 +64,6 @@ public class IzmapManager {
 	}
 	
 	private void addNode() {
-		System.out.println("Enter node information with comma between in format \"Name,Category,CategoryType\" : ");
 		List<String> inputList = consoleIn.readLineOfString();
 		String nodeName = inputList.get(0);
 		String category = inputList.get(1);
@@ -110,13 +108,7 @@ public class IzmapManager {
 		
 		System.out.println("Enter neighbour nodes id in format \"1,2,3\"");
 		List<Integer> idList = consoleIn.readLineOfInteger();
-		for(int id : idList) {
-			
-		}
-		
-		
-		
-		map.addNode(newNode);
+		map.addNode(newNode, idList);
 		
 		IzmapWriter writer = new IzmapWriter("iztech.izmap");
 		writer.write(map.getHashMap());

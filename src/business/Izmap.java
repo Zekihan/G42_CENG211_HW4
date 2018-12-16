@@ -192,8 +192,16 @@ public class Izmap {
 		return new ArrayList<Node>(reached);
 	}
 
-	public void addNode(Node newNode) {
-		// TODO Auto-generated method stub
-		
+	public void addNode(Node newNode, List<Integer> neigborNodeIds) {
+		List<Node> neighbors = new ArrayList<>();
+		for (int nodeId: neigborNodeIds) {
+			if(isNodeExist(nodeId)) {
+				neighbors.add(getNodeById(nodeId));
+			}
+		}
+		map.put(newNode, neighbors);
+		for (Node node : neighbors) {
+			map.get(node).add(newNode);
+		}
 	}
 }
