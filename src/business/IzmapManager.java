@@ -31,6 +31,7 @@ public class IzmapManager {
 				getShortestPath(map.getNodeById(consoleIn.readInt()), map.getNodeById(consoleIn.readInt()));
 				break;
 			case 2: 
+				view.menuCase2();
 				int b = consoleIn.readInt();
 				switch (b) {
 				case 1:
@@ -109,9 +110,9 @@ public class IzmapManager {
 		System.out.println("Enter neighbour nodes id in format \"1,2,3\"");
 		List<Integer> idList = consoleIn.readLineOfInteger();
 		map.addNode(newNode, idList);
-		
 		IzmapWriter writer = new IzmapWriter("iztech.izmap");
 		writer.write(map.getHashMap());
+		System.out.println("Successfully added node with id: " + nodeId);
 	}
 	
 	private void removeNode(Node node) {

@@ -3,6 +3,7 @@ package dal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class ConsoleInput {
 	
@@ -33,22 +34,22 @@ public class ConsoleInput {
 	public List<String> readLineOfString() {
 		
 		List<String> inputList = new ArrayList<String>();
-		keyboard.useDelimiter(",");
-		while(keyboard.hasNext()) {
-			inputList.add(keyboard.next());
+		String str = keyboard.next();
+		StringTokenizer strTok = new StringTokenizer(str, ",");
+		while(strTok.hasMoreTokens()) {
+			inputList.add(strTok.nextToken());
 		}
-		keyboard.reset();
 		return inputList;
 	}
 	
 	public List<Integer> readLineOfInteger() {
 		
-		List<Integer> inputList = new ArrayList<Integer>();
-		keyboard.useDelimiter(",");
-		while(keyboard.hasNext()) {
-			inputList.add(keyboard.nextInt());
+		List<Integer> inputList = new ArrayList<>();
+		String str = keyboard.next();
+		StringTokenizer strTok = new StringTokenizer(str, ",");
+		while(strTok.hasMoreTokens()) {
+			inputList.add(Integer.parseInt(strTok.nextToken()));
 		}
-		keyboard.reset();
 		return inputList;
 	}
 
