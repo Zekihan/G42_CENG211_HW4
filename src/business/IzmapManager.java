@@ -22,46 +22,58 @@ public class IzmapManager {
 	
 	public void start() {
 		view.startMessage();
-		while(true) {
-			view.menu();
-			int a = consoleIn.readInt();
-			switch(a){
-			case 1: 
-				view.menuCase1();
-				getShortestPath(map.getNodeById(consoleIn.readInt()), map.getNodeById(consoleIn.readInt()));
-				break;
-			case 2: 
-				view.menuCase2();
-				int b = consoleIn.readInt();
-				switch (b) {
-				case 1:
-					view.menuCase2Case1();
-					addNode();
+		boolean done = false;
+		while (!done) {
+		    try {
+		        view.menu();
+				int a = consoleIn.readInt();
+				switch(a){
+				case 1: 
+					view.menuCase1();
+					getShortestPath(map.getNodeById(consoleIn.readInt()), map.getNodeById(consoleIn.readInt()));
 					break;
-				case 2:
-					view.menuCase2Case2();
-					removeNode(map.getNodeById(consoleIn.readInt()));
+				case 2: 
+					view.menuCase2();
+					int b = consoleIn.readInt();
+					switch (b) {
+					case 1:
+						view.menuCase2Case1();
+						addNode();
+						break;
+					case 2:
+						view.menuCase2Case2();
+						removeNode(map.getNodeById(consoleIn.readInt()));
+						break;
+					default:
+						break;
+					}
 					break;
-				default:
+				case 3:
+					view.menuCase3();
+					getPossibleReachableLocationsFromGivenLocationDistance(map.getNodeById(consoleIn.readInt()), consoleIn.readDouble());
+					break;
+				case 4:
+					view.menuCase4();
+					getNeighbors(map.getNodeById(consoleIn.readInt()));
+					
+					break;
+				case 5: 
+					view.menuCase5();
+					consoleIn.closeKeyboard();
+					System.exit(0);
+					break;
+				default: 
 					break;
 				}
-				break;
-			case 3:
-				view.menuCase3();
-				getPossibleReachableLocationsFromGivenLocationDistance(map.getNodeById(consoleIn.readInt()), consoleIn.readDouble());
-				break;
-			case 4:
-				view.menuCase4();
-				getNeighbors(map.getNodeById(consoleIn.readInt()));
-				break;
-			case 5: 
-				view.menuCase5();
-				consoleIn.closeKeyboard();
-				System.exit(0);
-				break;
-			default: 
-				break;
-			}
+		        
+
+		    } catch (IllegalArgumentException e) {
+		    	view.illegalArgumentExcepitonMessage();
+		    } catch (Exception e) {
+		    	view.exceptionMessage();
+		    }
+		
+			
 		}
 	}
 	
@@ -108,7 +120,7 @@ public class IzmapManager {
 			newNode = new LandscapeNode(nodeId, nodeName, type);
 		}
 		
-		System.out.println("Enter neighbour nodes id in format \"1,2,3\"");
+		System.out.println("Enter neighbour nodes id in format \"1,2,3\" (nodes that do exist will be ignored)");
 		List<Integer> idList = consoleIn.readLineOfInteger();
 		map.addNode(newNode, idList);
 		IzmapWriter writer = new IzmapWriter("iztech.izmap");
@@ -132,7 +144,7 @@ public class IzmapManager {
 			double calcDistance = map.getShortestDistance(node, node1);
 			if(calcDistance > 0) {
 				if(calcDistance<=distance) {
-					System.out.println(node1+" Distance : "+calcDistance);
+					System.out.println(node1+", Distance : "+calcDistance);
 				}
 			}
 		}

@@ -12,13 +12,14 @@ public class IzmapManagerView {
 				"1) Find Shortest Path" + System.lineSeparator() +
 				"2) Add/Remove Locations" + System.lineSeparator() + 
 				"3) Possible reachable locations from a given location and distance" + System.lineSeparator() + 
-				"4) Neighbors" + System.lineSeparator()+
+				"4) Show the neighbors of given location id" + System.lineSeparator()+
 				"5) Exit" + System.lineSeparator());
 	}
 	
 	public void menuCase1() {
-		System.out.println( "Please enter Id's of two locations" + System.lineSeparator());
+		System.out.println( "Please enter the first location and then enter the other");
 	}
+	
 	
 	public void menuCase2() {
 		System.out.println( System.lineSeparator() +
@@ -32,18 +33,27 @@ public class IzmapManagerView {
 		
 	}
 	public void menuCase2Case2() {
-		System.out.println( "Please write Id of a location" + System.lineSeparator());
+		System.out.println( "Please enter Id of a location: ");
 	}
 	
 	public void menuCase3() {
-		System.out.println( "Please write Id of a location and the distance you want" + System.lineSeparator());
+		System.out.println( "Please enter Id of a location and then enter the distance you want: ");
 	}
 	
 	public void menuCase4() {
-		System.out.println( "Please write Id of a location" + System.lineSeparator());
+		System.out.println( "Please write Id of a location: ");
 	}
 	
 	public void menuCase5() {
-		System.out.println( "Thanks for using our application!" + System.lineSeparator());
+		System.out.println( "Thanks for using our application!");
+	}
+	
+	public void illegalArgumentExcepitonMessage() {
+		System.out.println("You have entered location id that does not exist, try again!");
+	}
+
+	public void exceptionMessage() {
+		System.out.println("You did something wrong, try again!");
+		
 	}
 }

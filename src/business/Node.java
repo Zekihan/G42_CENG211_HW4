@@ -42,7 +42,7 @@ public abstract class Node {
 
 	@Override
 	public String toString() {
-		return "Node [id=" + id + ", name=" + name + "]";
+		return "id=" + id + ", name=" + name ;
 	}
 
 

@@ -65,6 +65,7 @@ public class Izmap {
 	}
 	
 	public double getShortestDistance(Node node1,Node node2) {
+
 		if(node1.equals(node2)) {
 			return 0;
 		}else if (isNeighbor(node1, node2)) {
@@ -85,6 +86,9 @@ public class Izmap {
 				return -1;
 			}
 		}
+
+		
+		
 	}
 	private double getDistance(List<Node> path) {
 		double distance = 0;
@@ -115,13 +119,18 @@ public class Izmap {
         return pathsByNodes;
 	}
 	public Node getNodeById(int id) {
-		Set<Node> keys = map.keySet();
-		for (Node node : keys) {
-			if(node.getId() == id) {
-				return node;
+		if(isNodeExist(id)) {
+			Set<Node> keys = map.keySet();
+			for (Node node : keys) {
+				if(node.getId() == id) {
+					return node;
+				}
 			}
+		}else {
+			throw new IllegalArgumentException("There is no location exist with given id");
 		}
 		return null;
+
 	}
 	private List<List<Integer>> getAllPathsRecursive(Node node1,Node node2, boolean[] isVisited, List<Integer> localPathList,List<List<Integer>> paths) { 
 		isVisited[node1.getId()] = true; 

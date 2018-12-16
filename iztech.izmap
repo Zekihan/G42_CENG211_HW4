@@ -1,3 +1,4 @@
+# Node (Location) definitions
 1 [Building, Department, Computer Engineering]
 2 [Landscape, Historical Ruin, Roman Bath]
 3 [Building, Facility, Gym]
@@ -13,6 +14,8 @@
 13 [Building, Cafeteria, IZTECH Cafeteria]
 14 [Building, Cafeteria, IZTECH Usta]
 
+# Edges From/To <--> To/From
+# Remember that every arrow (<-->) is bi-directional.  
 1 <--> 7
 1 <--> 11
 14 <--> 1

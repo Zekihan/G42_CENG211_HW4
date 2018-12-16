@@ -78,8 +78,7 @@ public class LandscapeNode extends Node{
 
 	@Override
 	public String toString() {
-		return "LandscapeNode [type=" + type + ", toString()=" + super.toString()
-				+ "]";
+		return "Landscape, type=" + type + ", " + super.toString();
 	}
 	
 	
