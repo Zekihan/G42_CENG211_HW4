@@ -1,5 +1,5 @@
 1 [Building, Department, Computer Engineering]
-2 [Landscape, Beach, Roman Bath]
+2 [Landscape, Historical Ruin, Roman Bath]
 3 [Building, Facility, Gym]
 4 [Building, Facility, Pool]
 5 [Building, Department, Mechanical Engineering]
@@ -12,7 +12,6 @@
 12 [Landscape, Beach, Gulbahce Beach]
 13 [Building, Cafeteria, IZTECH Cafeteria]
 14 [Building, Cafeteria, IZTECH Usta]
-15 [Building, Department, Unreach]
 
 1 <--> 7
 1 <--> 11
