@@ -3,7 +3,6 @@ package dal;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,7 +58,7 @@ public class IzmapWriter {
 				type = null;
 				break;
 			}
-			if(node.getClass().equals(BuildingNode.class)) {
+			if(node.getClass() == BuildingNode.class) {
 				String line = node.getId() + " [Building, " + type + ", " + node.getName() + "]";
 				fileOut.println(line);
 			}else {
@@ -87,11 +86,6 @@ public class IzmapWriter {
 		
 		fileOut.close();
 	}
-	
-	
-	
-	
-	
 
 	private void setFileName(String fileName) {
 		this.fileName = fileName;

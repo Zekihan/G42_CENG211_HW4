@@ -10,7 +10,6 @@ import java.util.Scanner;
 import business.BuildingNode;
 import business.CategoryType;
 import business.LandscapeNode;
-import business.CategoryType;
 import business.Node;
 
 public class IzmapReader {
@@ -48,34 +47,41 @@ public class IzmapReader {
 				name = name + " " + fileIn.next();
 			}
 			Node newNode = null;
-			
 			CategoryType type = null;
-			switch(categoryType) {
-			case "Department":
-				type = CategoryType.DEPARTMENT;
-				break;
-			case "Cafeteria":
-				type = CategoryType.CAFETERIA;
-				break;
-			case "Administrative":
-				type = CategoryType.ADMINISTRATIVE;
-				break;
-			case "Facility":
-				type = CategoryType.FACILITIES;
-				break;
-			case "Waterfall":
-				type = CategoryType.WATERFALL;
-				break;
-			case "Beach":
-				type = CategoryType.BEACH;
-				break;
-			case "Historical Ruin":
-				type = CategoryType.HISTORICAL_RUIN;
-				break;
-			default:
-				break;
-			}
+			if(category.equals("Building")) {
+				switch(categoryType) {
+				case "Department":
+					type = CategoryType.DEPARTMENT;
+					break;
+				case "Cafeteria":
+					type = CategoryType.CAFETERIA;
+					break;
+				case "Administrative":
+					type = CategoryType.ADMINISTRATIVE;
+					break;
+				case "Facility":
+					type = CategoryType.FACILITIES;
+					break;
+				default:
+					break;
+				}
+				newNode = new BuildingNode(nodeId, name, type);
+			}else {
+				switch(categoryType) {
+				case "Waterfall":
+					type = CategoryType.WATERFALL;
+					break;
+				case "Beach":
+					type = CategoryType.BEACH;
+					break;
+				case "Historical Ruin":
+					type = CategoryType.HISTORICAL_RUIN;
+					break;
+				default:
+					break;
+				}
 				newNode = new LandscapeNode(nodeId, name, type);
+			}	
 			
 			nodes.put(nodeId, newNode);
 		}
@@ -99,10 +105,9 @@ public class IzmapReader {
 			pair[1] = pairNodeId;
 			pairList.add(pair);
 		}
-		
 		HashMap<Integer,List<Integer>> directedGraph = new HashMap<>();
-		for(Node node: nodes.values()) {
-			
+		
+		for(Node node: nodes.values()) {	
 			 directedGraph.put(node.getId(), new ArrayList<Integer>());
 		}
 		for(int[] aPair: pairList) {
@@ -111,8 +116,7 @@ public class IzmapReader {
 			directedGraph.get(node1).add(node2);
 			directedGraph.get(node2).add(node1);
 		}
-		for(int id : directedGraph.keySet()) {
-			
+		for(int id : directedGraph.keySet()) {	
 			Node targetNode = nodes.get(id);
 			for (int i : directedGraph.get(id)) {
 				izmap.get(targetNode).add(nodes.get(i));
@@ -121,7 +125,6 @@ public class IzmapReader {
 		return izmap;
 	}
 	
-
 	private void setFileName(String fileName) {
 		this.fileName = fileName;
 	}

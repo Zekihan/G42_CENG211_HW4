@@ -2,66 +2,59 @@ package business;
 
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
+import dal.ConsoleInput;
 import dal.IzmapReader;
+import view.IzmapManagerView;
 
 public class IzmapManager {
 	
-	Izmap map;
-	private Scanner keyboard;
+	private Izmap map;
+	private IzmapManagerView view;
+	private ConsoleInput consoleIn;
 
 	public IzmapManager() {
-		this.map = new Izmap(new IzmapReader("iztech.izmap").read());
-		keyboard = new Scanner(System.in);
+		setMap(new Izmap(new IzmapReader("iztech.izmap").read()));
+		setView(new IzmapManagerView());
+		setConsoleIn(new ConsoleInput());
 	}
 	
 	public void start() {
-		System.out.println("Welcome to the Book & Movie Rent Application" );
+		view.startMessage();
 		while(true) {
-			System.out.println( System.lineSeparator() +
-					"Menu:" + System.lineSeparator() + 
-					"1) Find Shortest Path" + System.lineSeparator() +
-					"2) Add/Remove Locations" + System.lineSeparator() + 
-					"3) Possible reachable locations from a given location and distance" + System.lineSeparator() + 
-					"4) Neighbors" + System.lineSeparator()+
-					"5) Exit" + System.lineSeparator());
-			int a = keyboard.nextInt();
+			view.menu();
+			int a = consoleIn.readInt();
 			switch(a){
 			case 1: 
-				System.out.println( "Please write Id's of two locations" + System.lineSeparator());
-				getShortestPath(map.getNodeById(keyboard.nextInt()), map.getNodeById(keyboard.nextInt()));
+				view.menuCase1();
+				getShortestPath(map.getNodeById(consoleIn.readInt()), map.getNodeById(consoleIn.readInt()));
 				break;
 			case 2: 
-				System.out.println( System.lineSeparator() +
-						"Add/Remove:" + System.lineSeparator() + 
-						"1) Add Location" + System.lineSeparator() +
-						"2) Remove Location" + System.lineSeparator());
-				int b = keyboard.nextInt();
+				int b = consoleIn.readInt();
 				switch (b) {
 				case 1:
+					view.menuCase2Case1();
 					addNode();
 					break;
 				case 2:
-					System.out.println( "Please write Id of a location" + System.lineSeparator());
-					removeNode(map.getNodeById(keyboard.nextInt()));
+					view.menuCase2Case2();
+					removeNode(map.getNodeById(consoleIn.readInt()));
 					break;
 				default:
 					break;
 				}
 				break;
 			case 3:
-				System.out.println( "Please write Id of a location and the distance you want" + System.lineSeparator());
-				getPossibleReachableLocationsFromGivenLocationDistance(map.getNodeById(keyboard.nextInt()), keyboard.nextDouble());
+				view.menuCase3();
+				getPossibleReachableLocationsFromGivenLocationDistance(map.getNodeById(consoleIn.readInt()), consoleIn.readDouble());
 				break;
 			case 4:
-				System.out.println( "Please write Id of a location" + System.lineSeparator());
-				getNeighbors(map.getNodeById(keyboard.nextInt()));
+				view.menuCase4();
+				getNeighbors(map.getNodeById(consoleIn.readInt()));
 				break;
 			case 5: 
-				keyboard.close();
+				view.menuCase5();
 				System.exit(0);
 				break;
 			default: 
@@ -111,5 +104,17 @@ public class IzmapManager {
 		for (Node node1 : neighbors) {
 			System.out.println(node1);
 		}
+	}
+
+	private void setMap(Izmap map) {
+		this.map = map;
+	}
+
+	private void setView(IzmapManagerView view) {
+		this.view = view;
+	}
+
+	private void setConsoleIn(ConsoleInput consoleIn) {
+		this.consoleIn = consoleIn;
 	}
 }
